@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;padding: 0;
+			}
+			#box{
+				font-size: 0;
+				width: 1000px;
+				height: 410px;
+				margin: 30px auto;
+				overflow: hidden;
+				position: relative;
+				background: #000;
+			}
+			#min-box{
+				width: 6000px;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="min-box">
+				<img src="./img/1.jpg" alt="">
+				<img src="./img/2.jpg" alt="">
+				<img src="./img/3.jpg" alt="">
+				<img src="./img/1.jpg" alt="">
+			</div>
+			
+		</div>
+				
+		<script>
+			var minBox = document.getElementById("min-box");
+			var imgs = document.querySelectorAll("img");
+			var num = -1;
+			// document.body.style.background = "#000"
+			var timer = setInterval(function(){
+				var left = minBox.offsetLeft ; 
+				if(left <= -3000){
+					left = 0 ;
+				}
+				minBox.style.left = left + num + "px";				
+			},4)
+			
+			
+			for(let i = 0 ; i < imgs.length ; i++){
+				imgs[i].onmouseenter = function(){
+					clearInterval(timer)
+					for(let j = 0 ; j < imgs.length ; j++){
+						imgs[j].style.opacity = 0.3
+					}
+					this.style.opacity = 1 ;
+				}
+			}
+			
+			minBox.onmouseleave = function(){
+				for(let j = 0 ; j < imgs.length ; j++){
+					imgs[j].style.opacity = 1
+				}
+				timer = setInterval(function(){
+					var left = minBox.offsetLeft ; 
+					if(left <= -3000){
+						left = 0 ;
+					}
+					minBox.style.left = left + num + "px";				
+				},4)
+				
+			}
+		</script>
+	</body>
+</html>

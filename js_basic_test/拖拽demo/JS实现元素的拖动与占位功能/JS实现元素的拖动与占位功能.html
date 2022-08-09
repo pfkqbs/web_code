@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS实现元素的拖动与占位功能</title>
+    <script src="./jquery-3.6.0.js"></script>
+    <style>
+        * {
+            margin: 0;
+            left: 0;
+            list-style: none;
+            box-sizing: border-box;
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            width: 1000px;
+            height: 600px;
+            margin: 100px auto;
+            padding: 0;
+        }
+        .container li {
+            width: 180px;
+            height: 100%;
+            background-color: plum;
+            border-radius: 10px;
+            padding: 5px;
+        }
+        .item {
+            width: 170px;
+            height: 100px;
+            background-color: salmon;
+            margin: 5px 0;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <ul class="container">
+       <li>
+           <div class="item">1</div>
+           <div class="item">2</div>
+           <div class="item">3</div>
+       </li> 
+       <li>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+       </li> 
+       <li>
+        <div class="item">7</div>
+        <div class="item">8</div>
+        <div class="item">9</div>
+       </li> 
+       <li></li>
+       <li></li>
+    </ul>
+    <script>
+        $(function(){
+            for (var i = 0; i < 5; i++) {
+               $(".container li")[i].setAttribute('index', i);
+            }
+            $('.item').on('mousedown',function(e){
+                // 不仅要获取到当前的元素还要获取到当前所在的模块（所以在一开始就要先给每个模块设置一个index属性，属性值就是每个模块本身的索引号）
+                var index = Number($(this).parent()[0].getAttribute('index'));
+                //获取当前所选任务的左边距和上边距
+                startLeft = $(this).offset().left;
+                startTop = $(this).offset().top;
+                //求鼠标在所选任务里的位置
+                mouseX = e.pageX - startLeft;
+                mouseY = e.pageY - startTop;
+                $(this).on('mousemove',function(e){
+                    $(this).offset({
+                       left: e.pageX - mouseX,
+                       top: e.pageY - mouseY        
+                    })
+                })
+                $(this).on('mouseup',function(){
+                    //用来记录item移动到那个位置
+                    k = -1;
+                    $(this).off('mousemove');
+                     //获取所选 模块 的下一个 模块索引
+                    if (index >= 4) {
+                        index = 3;
+                    }
+                    var next = $('.container li').eq(index + 1);
+                     
+                    //如果鼠标放开时，所移动到的距离正好位于所选模块的下一个模块的区间内，就执行
+                   if ($(this).offset().left >= next.offset().left&&$(this).offset().left <= next.offset().left + next[0].offsetWidth) {
+                   //获取到所选的item中的内容
+                   var text = $(this).html();
+                   //在最终所要放置的位置新建一个空任务，再把所获取到的内容添加进去
+                   var father = document.createElement('div');
+                   father.className = 'item';
+                   $(father).append(text);
+                  //把点击的当前元素获取过来
+                  var ele = $(this);
+                 //如果当前模块没有item，则直接添加到第一个位置，如果有，则比较看它的top比哪个 大就放在哪个的后面
+                 if (next.children().length == 0) {
+                    next.append(father);
+                } else {
+                   $.each(next.children(), function (i,item) {
+                    if ( ele.offset().top > $(item).offset().top) {
+                        k = i;
+                    }
+                   })
+                    //如果 k == -1 说明 要把任务放在该模块的第一个位置
+                    if (k == -1) {
+                        next.children().eq(0).before(father);
+                    } else {
+                        next.children().eq(k).after(father);
+                 }
+                    
+                }
+                //解绑移动事件，清空原来位置的item
+                $(this).off("mousemove");
+                $(this).remove();
+                $(this).empty();
+            } else {
+                //这里就是移动不成功，回到原来位置
+                $(this).offset({
+                    left: startLeft,
+                    top: startTop
+                })
+                $(this).off("mousemove");
+            }
+                })
+            })
+        })
+    </script>
+</body>
+</html>

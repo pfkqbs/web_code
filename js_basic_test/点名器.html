@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            /* background-color: pink; */
+        }
+        .box{
+            width: 1000px;
+            /* height: 240px; */
+            margin: 10px auto;
+            margin-top: 100px;
+            clear: both;
+            /* overflow: hidden; */
+        }
+        .box::after{
+            display: block;
+            content: '';
+            clear: both;
+        }
+        #btn{
+            width: 180px;
+            height: 50px;
+            /* margin-left: 600px; */
+            margin: 50px auto;
+            border:1px solid #d6d6d6;
+            background-color: antiquewhite;
+            border-radius: 6px;
+            border:none;
+            color: white;
+            outline: none;
+            background-color: #345adb;
+        }
+        .name{
+            width: 80px;
+            height: 80px;
+            border-radius:50%;
+            float: left;
+            color: yellow;
+            /* background-color: white; */
+            background: linear-gradient(to right,blue, #6c8bf7,#345adb,blue);
+            margin-left: 20px;
+            margin-top: 20px;
+            text-align: center;
+            line-height: 80px;
+            border-radius:50%;
+            box-shadow:5px 5px 20px #83d9fd;
+        }
+        #time{
+            float: right;
+            position: relative;
+            top: 55px;
+            right: 185px;
+        }
+        h1{
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>随机点名系统</h1>
+    <span id="time"></span>
+    <div class="box" id="box"></div>
+    <div class="div" style="text-align: center;">
+        <input type="button" id="btn" value="点名" /></div>
+  
+    <script type="text/javascript">
+    //创造虚拟后台数据
+        var arrs = 
+        [
+          "董康乐", "王均", '张斌', "韩士虎",
+          '冯晓寒','马吉庆','边希娟',
+             '云飞扬',"周子华",
+            '郑世豪','郝战伟','张俊伟','姬洋洋',"赵文君",
+            "张瀚林","李嘉帅","张帅",
+            '王少军',"孙符凯","秦光鹤","车宏韬","贾昊巍",
+            '程秀秀','马对虎','赵晨阳','姜飞',"刘秀明",'王雪浩','白昀朗','孙符凯'
+        ];
+        console.log(arrs.length);
+        //获取父元素
+        var boxNode = document.getElementById("box");
+        for (var i = 0; i < arrs.length; i++) {
+            //创建新元素
+            var divNode = document.createElement("div");
+            divNode.innerHTML = arrs[i];
+            divNode.className = "name";
+            boxNode.appendChild(divNode);
+        }
+        //点
+        var btn = document.getElementById("btn");
+
+        function bgColor(){
+            return '#'+ Math.floor(Math.random()*Math.pow(16,6)).toString(16)
+        }
+        btn.onclick = function () {
+            if (this.value === "点名") {
+                //定时
+                timeId = setInterval(function () {
+                    //清空所有颜色
+                    for (var j = 0; j < arrs.length; j++) {
+                        boxNode.children[j].style.background = "";
+                        boxNode.children[j].style.color = "white";
+                        boxNode.children[j].style.boxShadow = '5px 5px 20px #83d9fd'
+                    }
+                    //留下当前颜色
+                    var random = parseInt(Math.random() * arrs.length);
+                    boxNode.children[random].style.background ='red';
+                    // boxNode.children[random].style.color = 'white'
+                    boxNode.children[random].style.boxShadow = '5px 5px 20px deeppink'
+
+                }, 300);
+                this.value = "停止";
+            } else {
+                //清除计时器
+                clearInterval(timeId);
+                this.value = "点名";
+            }
+        }
+        var spanNode = document.getElementById("time");
+        //调用时间
+        getTime();
+        setInterval(getTime, 1000);
+
+        function getTime() {
+            var day = new Date();
+            var year = day.getFullYear();
+            var month = day.getMonth() + 1;
+            var dat = day.getDate();
+            // alert(dat)
+            var hours = day.getHours();
+            var minitues = day.getMinutes();
+            var second = day.getSeconds();
+            spanNode.innerHTML = year + "-" + month + "-" + dat + " " + hours + ":" + minitues + ":" + second;
+        }
+    </script>
+</body>
+
+</html>

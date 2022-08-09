@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;padding: 0;
+			}
+			.content{
+				width: 1000px;
+				height: 600px;
+				transform-style: preserve-3d;
+				position: relative;
+				transform: rotateX(10deg) rotateY(10deg);
+				transition: all 10s ease;
+				perspective: 0px;  /* 1  --- 500*/
+			}
+			.content:hover{
+				/* perspective: 300px; */
+				transform: rotateX(3330deg) rotateY(3330deg);
+			}
+/* 			.box{
+				width: 200px;
+				height: 200px;
+				background: #0f0;
+				margin: 10px auto;
+				transform: translateZ(-500px);
+				transform: rotateY(30deg) translateZ(300px);
+			} */
+			.box{
+				width: 200px;
+				height: 200px;
+				position: absolute;
+				top: 50%;
+				left: 50%;			
+					text-align: center;
+					line-height: 200px;
+					font-size: 32px;
+			}
+			.box:nth-of-type(1){
+				background: rgba(255,0,0,1);
+				transform: translateZ(100px);
+			}
+			.box:nth-of-type(2){
+				background: rgba(0,255,0,1);
+				transform: rotateY(180deg) translateZ(100px);
+			}
+			.box:nth-of-type(3){
+				background: rgba(0,0,255,1);
+				transform: rotateY(90deg) translateZ(100px);
+			}
+			.box:nth-of-type(4){
+				background: rgba(255,255,0,1);
+				transform: rotateY(270deg) translateZ(100px);
+			}
+			.box:nth-of-type(5){
+				background: rgba(255,0,255,1);
+				transform: rotateX(90deg) translateZ(100px);
+			}
+			.box:nth-of-type(6){
+				background: rgba(0,255,255,1);
+				transform: rotateX(270deg) translateZ(100px);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<div class="box">1</div>
+			<div class="box">2</div>
+			<div class="box">3</div>
+			<div class="box">4</div>
+			<div class="box">5</div>
+			<div class="box">6</div>
+		</div>
+	</body>
+</html>

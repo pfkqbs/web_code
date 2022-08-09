@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js二叉树</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+// 二叉树  排序二叉树特点：左子节点的值小于当前节点的值，右子节点的值大于当前节点的值；
+// 遍历分三种：前序遍历  中序遍历  后序遍历
+// 中序遍历：先遍历左子树，
+// 前序遍历：先遍历当前节点
+// 后序遍历：先遍历右子树，
+// 二叉树的查找算法：查看某节点在二叉树中是否存在       
+// 查找二叉树的最小值：一直去找左子节点，直到没有左子节点
+// 最大值：一直去找右子节点，直到没有右子节点
+// 查找给定的某值：
+
+//                  ┌┅┅┅┅ 8 ┅┅┅┅┐               
+//                  ↓                   ↓               
+//             ┌┅┅ 3 ┅┅┐            10 ┅┅┅ ┐        
+//             ↓           ↓                      ↓        
+//             1     ┌┅┅ 6 ┅┅┐          ┌┅┅ 14  
+//                   ↓           ↓          ↓  
+//                   4           7          13 
+
+        function BinaryTree(){
+            // 节点
+            let Node = function (key){
+                this.key = key;
+                this.left = null;
+                this.right = null;
+            }
+            // 根节点
+            let root = null;
+            // 插入
+            this.insert = function(key){
+                let newNode = new Node(key);
+                if(root === null){
+                    root = newNode;
+                }else{
+                    insertNode(root,newNode)
+                }
+            }
+            // 插入的逻辑判断（递归）
+            let insertNode = function(node,newNode){
+                if(newNode.key < node.key){
+                    if(node.left === null){
+                        node.left = newNode
+                    }else{
+                        insertNode(node.left,newNode)
+                    }
+                }else{
+                    if(node.right === null){
+                        node.right = newNode
+                    }else{
+                        insertNode(node.right,newNode)
+                    }
+                }
+            }
+            // 中序遍历节点  递归
+            let inOrderTraverseNode = function(node,callback){
+                if(node !== null){
+                    inOrderTraverseNode(node.left,callback);//访问左子树
+                    callback(node.key);//访问当前节点（打印节点值）
+                    inOrderTraverseNode(node.right,callback);//访问右子树
+                }
+            }           
+            //中序遍历接口
+            this.inOrderTraverse = function(callback){
+                inOrderTraverseNode(root,callback);
+            }
+
+            // 前序遍历节点  递归
+            let preOrderTraverseNode = function(node,callback){
+                if(node !== null){
+                    callback(node.key);//访问当前节点（打印节点值）
+                    preOrderTraverseNode(node.left,callback);//访问左子树
+                    preOrderTraverseNode(node.right,callback);//访问右子树
+                }
+            }
+            // 前序遍历--复制一个二叉树效率高
+            this.preOrderTraverse = function(callback){
+                preOrderTraverseNode(root,callback);
+            }
+
+            // 后序遍历节点  递归
+            let postOrderTraverseNode = function(node,callback){
+                if(node !== null){
+                    postOrderTraverseNode(node.right,callback);//访问右子树
+                    postOrderTraverseNode(node.left,callback);//访问左子树
+                    callback(node.key);//访问当前节点（打印节点值）
+                }
+            }
+            // 后序遍历--复制一个二叉树效率高
+            this.postOrderTraverse = function(callback){
+                postOrderTraverseNode(root,callback);
+            }
+            // 最小值逻辑
+            let minNode = function(node){
+                if(node){
+                    while(node && node.left !== null){
+                        node = node.left
+                    }
+                    return node.key
+                }
+                return null
+            }
+            // 最小值方法
+            this.min = function(){
+                return minNode(root)
+            }
+            // 最大值逻辑
+            let maxNode = function(node){
+                if(node){
+                    while(node && node.right !== null){
+                        node = node.right
+                    }
+                    return node.key
+                }
+                return null
+            }
+            // 最大值方法
+            this.max = function(){
+                return maxNode(root)
+            }
+            // 查找的逻辑：存在返回TRUE  不存在返回false
+            let searchNode = function(node,key){
+                if(node === null ){
+                    return false;
+                }
+                if(key < node.key){
+                    return searchNode(node.left,key)
+                }
+                if(key > node.key){
+                    return searchNode(node.right,key)
+                }
+                if(key === node.key){
+                    return true;
+                }
+            }
+            // 查找方法
+            this.search = function(key){
+                return searchNode(root,key);
+            }
+            // 删除节点逻辑
+            let removeNode = function(node,key){
+                if(node === null){
+                    return null;
+                }
+                if(key < node.key){
+                    node.left = removeNode(node.left,key)
+                    return node;
+                }else if(key > node.key){
+                    node.right = removeNode(node.right,key)
+                    return node;
+                }else{
+                    // 一个叶节点
+                    if(node.left === null && node.right === null){//如果左、右子节点为空 直接删除
+                        node = null;
+                        return node;
+                    }
+                    // 只有一个子节点
+                    if(node.left === null){//如果左子树为空，直接指向右子节点
+                        node = node.right;
+                        return node;
+                    }else if(node.right === null){//如果右子树为空，直接指向左子节点
+                        node = node.left;
+                        return node;
+                    }
+                    // 有两个子节点
+                    let aux = findMinNode(node.right);
+                    node.key = aux.key;
+                    node.right = removeNode(node.right,aux.key);
+                    return node;
+                }
+            }
+            // 删除方法
+            this.remove = function(key){
+                root = removeNode(root,key)
+            }
+            let findMinNode = function(node){
+                if(node){
+                    while(node && node.left !== null){
+                        node = node.left;
+                    }
+                    return node;
+                }
+                return null;
+            }
+
+        }
+        let nodes= [8,3,10,1,6,14,4,7,13];
+        let binaryTree = new BinaryTree();
+        nodes.forEach( key=>{
+            binaryTree.insert(key)
+        });
+
+        // 回调函数
+        let callback = function(key){
+                console.log(key);
+            }
+
+        // 中序遍历结果：从小到大的排序
+        // binaryTree.inOrderTraverse(callback)
+
+        // 前序遍历结果：从根节点开始左子树然后右子树遍历
+        // binaryTree.preOrderTraverse(callback)
+
+        // 后序遍历结果：
+        // binaryTree.postOrderTraverse(callback) 
+
+        // 求最小值结果：
+        binaryTree.min(callback)
+        // console.log(binaryTree.min(callback));
+
+        // 求最大值结果：
+        binaryTree.max(callback)
+        // console.log(binaryTree.max(callback));
+
+        // 查找某值在二叉树中是否存在
+        binaryTree.search(7);//存在返回TRUE，不存在返回false
+        console.log(binaryTree.search(7));
+
+        // 删除
+        binaryTree.remove(3);
+
+
+
+
+
+
+    </script>
+</body>
+</html>

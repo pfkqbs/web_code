@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;padding: 0;
+			}
+			img{
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<script>
+			var body = document.body ;
+			
+			
+			setInterval(showStar,1000)
+			
+			
+			function showStar(){
+				var img = document.createElement("img");
+				img.src = "./xingxing.gif";
+				// img.setAttribute("src","./xingxing.gif");
+				var randomSize = Math.floor(Math.random() * (150 - 10 + 1) + 10);
+				img.style.width = randomSize + "px";
+				img.style.height = randomSize + "px";
+				
+				var maxLeft = window.innerWidth - randomSize ;
+				var maxTop = window.innerHeight - randomSize ;
+				
+				var randomLeft = Math.floor(Math.random() * (maxLeft - 0 + 1));
+				var randomTop = Math.floor(Math.random() * (maxTop - 0 + 1));
+				
+				img.style.left = randomLeft + "px";
+				img.style.top = randomTop + "px";
+				
+				body.appendChild(img);
+			}
+			
+		</script>
+	</body>
+</html>

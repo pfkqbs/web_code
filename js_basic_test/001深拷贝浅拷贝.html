@@ -1,0 +1,49 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>深拷贝浅拷贝</title>
+    </head>
+
+    <body>
+        <pre>
+        1. 概念： 一般深浅拷贝都针对于 引用数据类型
+            浅拷贝：   浅拷贝是拷贝的内存地址，使新对象指向拷贝对象的内存地址。
+            深拷贝：  是重新开辟一块内存空间，拷贝之后的数据进行修改不会影响到原数据
+
+        js 数据类型：  基本数据类型和引用数据类型
+        基本数据类型： String Number Null Undefined Boolean Symbol BigInt  ==> 这个是按值访问，
+        引用数据类型： array  object
+
+        2.怎么实现浅拷贝 深拷贝
+            方法1：递归的方式（判断如果obj的子元素是对象，则进行递归判断，如果不是对象，则简单复制。
+            方法2：let obj2=JSON.parse(JSON.Stringify(obj))
+            方法3：jquery extend的方法
+            方法4：lodash _cloneDeep
+    </pre>
+        <script>
+            let obj1 = [{name:"peter","age":18},123,[4,5,{id:14,goodsName:"apple"}]]
+
+            function deepClone(source){
+            const newObj = source.constructor === Array ? [] : {}; // 判断复制的目标是数组还是对象
+            for(let keys in source){ // 遍历目标
+                if(source.hasOwnProperty(keys)){
+                if(source[keys] && typeof source[keys] === 'object'){ // 如果值是对象，就递归一下
+                    newObj[keys] = source[keys].constructor === Array ? [] : {};
+                    newObj[keys] = deepClone(source[keys]);
+                }else{ // 如果不是，就直接赋值
+                    newObj[keys] = source[keys];
+                }
+                } 
+            }
+            return newObj;
+            }
+            console.log(deepClone(obj1));
+        </script>
+    </body>
+
+    </html>

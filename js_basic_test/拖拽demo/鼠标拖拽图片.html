@@ -1,0 +1,90 @@
+
+    <!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>鼠标拖拽一个图片到其他地方</title>
+        <style type="text/css">
+            #dragdiv {
+                background-color: tomato;
+                height: 200px;
+                width: 200px;
+                position: absolute;
+            }
+
+            .ondrag {
+                filter: alpha(opacity=200);
+                cursor: move;
+            }
+
+            .enddrag {
+                filter: alpha(opacity=100);
+                cursor: default;
+            }
+            #father {
+                width: 100vw;
+                height: 100vh;
+                background: gray;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="father">
+            <div id="dragdiv"></div>
+        </div>
+        <script language="JavaScript">
+            var dragdiv=document.getElementById("dragdiv"); 
+            var father=document.getElementById("father"); 
+            var offsetx=0; //保存鼠标在X轴的变化量
+            var offsety=0; //保存鼠标在Y轴的变化量
+            var draging=false; 
+            // 拖拽前
+            function beforeDrag(ev){  
+                console.log(ev); //事件对象 可获取鼠标的位置           
+                if (!draging) { 
+                draging = true; 
+                var l = dragdiv.offsetLeft; 
+                var t = dragdiv.offsetTop; 
+                offsetx = ev.clientX - l; //存储鼠标变化量
+                offsety = ev.clientY - t; //存储鼠标变化量                 
+                } 
+                else { 
+                    dragdiv.className = "enddrag"; 
+                    dragdiv.removeEventListener("mousemove",onDrag); 
+                    draging = false; 
+                    return; 
+                } 
+                
+            } 
+            // 拖拽结束
+            function endDrag(){ 
+                draging=false; 
+                dragdiv.className="enddrag"; 
+            } 
+
+            // 拖拽中
+            function onDrag(ev){ 
+            if (!draging) { 
+                dragdiv.className = "enddrag"; 
+                return; 
+            } 
+            else { 
+                dragdiv.className = "ondrag"; 
+                
+                dragdiv.style.left = (ev.clientX - offsetx) + "px"; 
+                dragdiv.style.top = (ev.clientY - offsety) + "px"; 
+                
+            } 
+            } 
+            dragdiv.addEventListener("mousedown",beforeDrag,true); //"mousedown”是指按下鼠标时触发此事件，（上面触发了beforeDrag函数)
+            dragdiv.addEventListener("mousemove",onDrag,false); //"mousemove"指鼠标移动时触发此事件，（上面触发了onDrag函数）
+            dragdiv.addEventListener("mouseup",endDrag,true); //"mouseup"指鼠标按下后松开鼠标时触发此事件。（上面触发了endDrag函数)
+        
+        </script>
+
+    </body>
+
+    </html>

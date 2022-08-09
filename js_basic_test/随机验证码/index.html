@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;padding: 0;
+			}
+			div{
+				width: 80px;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				background: #666;
+				margin: 100px auto;
+				color: #eee;
+				font-style: italic;
+				cursor: pointer;
+			}	
+		</style>
+	</head>
+	<body>
+		<div>A4b1</div>
+		<script>
+			var  str = "1234567890qwertuiopasdfhklzxcbnmQWERYUIOPASFHKLZXCVBNM";
+			var div = document.querySelector("div");
+			randomCode()
+			div.onclick = randomCode
+	
+			function randomCode(){
+				var randomStr = ""			
+				for(var i = 0 ; i < 4 ; i++){
+					var  randomIndex = Math.floor(Math.random() * str.length);
+					randomStr += str[randomIndex]
+				}
+				div.innerText = randomStr;
+			}
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

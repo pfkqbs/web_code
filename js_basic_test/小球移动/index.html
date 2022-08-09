@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>11</title>
+		<style>
+			*{
+				margin: 0;padding: 0;
+			}
+			#box{
+				width: 1000px;
+				height: 600px;
+				border: 1px solid #ccc;
+				position: relative;
+				margin: 50px  auto;
+			}
+			.ball{
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				background: #0f0;
+				position: absolute;
+				left: 0px;
+				top: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+
+		</div>
+		<script>
+			var box = document.getElementById("box");
+			
+			setInterval(setBall,1000)
+					
+			function setBall(){
+				var ball = document.createElement("div");
+				ball.className = "ball";
+				box.appendChild(ball);
+				var maxLeft = box.clientWidth - ball.offsetWidth ;
+				var maxTop = box.clientHeight - ball.offsetHeight ;
+				var left = 0;
+				var flag = true ;
+				var top1 = 0 ;
+				var flag1 = true;
+				var randomLeft = Math.floor(Math.random() * 6)
+				var randomTop = Math.floor(Math.random() * 6)
+				
+				setInterval(function(){				
+					if(left >= maxLeft){ //800
+								flag = false
+							}else if(left <= 0){
+								flag = true
+							}
+							
+							if(flag){
+								left+=randomLeft
+							}else{
+								left-=randomLeft
+							}
+							
+							ball.style.left = left + "px"
+							
+							if(top1 >= maxTop){ //800
+								flag1 = false
+							}else if(top1 <= 0){
+								flag1 = true
+							}
+							
+							if(flag1){
+								top1+=randomTop
+							}else{
+								top1-=randomTop
+							}		
+							ball.style.top = top1 + "px"
+			},2)
+				
+				
+			}
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+

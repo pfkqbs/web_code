@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;padding: 0;
+			}
+			#box{
+				width: 1000px;
+				height: 410px;
+				margin: 50px auto;
+				position: relative;
+			}
+			img{
+				position: absolute;
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				opacity: 0;				
+			}
+			img:first-of-type{
+				opacity: 1;
+			}
+			#left{
+				position: absolute;
+				width: 45px;
+				height: 90px;
+				left: 10px;
+				top: 50%;
+				margin-top: -45px;
+				background: url(./img/l.png) no-repeat center center;
+				display: none;
+			}
+			#right{
+				position: absolute;
+				width: 45px;
+				height: 90px;
+				right: 10px;
+				top: 50%;
+				margin-top: -45px;
+				background: url(./img/r.png) no-repeat center center;
+				display: none;
+			}
+			#menu{
+				width: 300px;
+				height: 50px;
+				position: absolute;
+				bottom: 10px;
+				left: 50%;
+				margin-left: -150px;
+			}
+			span{
+				display: inline-block;
+				width: 40px;
+				height: 40px;
+				line-height: 40px;
+				text-align: center;
+				border-radius: 50%;
+				background: rgba(255,255,255,0.5);
+				font-size: 24px;
+				font-weight: bold;
+				margin-right: 5px;
+				cursor: pointer;
+			}
+			span:first-of-type {
+				background: #00f;
+				color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<img src="./img/1.jpg" alt="">
+			<img src="./img/2.jpg" alt="">
+			<img src="./img/3.jpg" alt="">
+			<img src="./img/4.jpg" alt="">
+			<img src="./img/5.jpg" alt="">
+			<img src="./img/6.jpg" alt="">
+			<div id="left"></div>
+			<div id="right"></div>
+			<div id="menu">
+				<span>1</span>
+				<span>2</span>
+				<span>3</span>
+				<span>4</span>
+				<span>5</span>
+				<span>6</span>
+			</div>
+		</div>
+		
+		<script>
+			// 获取页面元素
+			var box = document.getElementById("box");
+			var imgs = document.querySelectorAll("img");
+			var left = document.getElementById("left");
+			var right = document.getElementById("right");
+			var spas = document.getElementsByTagName("span");
+			
+			var index = 0; //用于控制轮播图的下标
+			
+			// 设置自动轮播的定时器
+			var timer = setInterval(function(){
+				showLb(true)
+			},1000)
+			
+			// 下一张按钮的点击事件
+			right.onclick = function(){
+				showLb(true)
+			}
+			
+			// 上一张按钮的点击事件
+			left.onclick = function(){
+				showLb(false);
+			}
+			
+			// 大盒子鼠标移入事件，用于停止自动轮播
+			box.onmouseenter = function() {
+				left.style.display = "block";
+				right.style.display = "block";
+				clearInterval(timer);
+			}
+			// 大盒子鼠标离开事件，用户开启自动轮播
+			box.onmouseleave = function(){
+				left.style.display = "none";
+				right.style.display = "none";
+				timer = setInterval(function(){
+					showLb(true);
+				},1000)
+			}
+			// 为每一个轮播按钮实现点击事件，可以随意切换当前显示的图片
+			for(let i = 0 ; i < spas.length ; i++){
+				spas[i].onclick = function(){
+					index = i;
+					result(index);
+				}
+			}
+					
+			// 用于控制轮播方向以及开始轮播的函数  boo为方向  true表示向右  false 表示向左
+			function showLb(boo){
+				if(boo){
+					if(index >= 5){
+						index = 0
+					}else{
+						index++
+					}
+				}else{
+					if(index <= 0){
+						index = 5
+					}else{
+						index--
+					}
+				}				
+				result(index)
+			}	
+			
+			// 展示轮播效果的函数
+			function result(index){
+				for(let i = 0 ; i < imgs.length ; i++){
+					imgs[i].style.opacity = 0;
+					spas[i].style.background = "rgba(255,255,255,0.5)";
+					spas[i].style.color = "#333";
+				}
+				imgs[index].style.opacity = 1 ;
+				spas[index].style.background = "#00f";
+				spas[index].style.color = "#fff";
+			}
+			
+		</script>
+	</body>
+</html>

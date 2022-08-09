@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;padding: 0;
+			}
+			#box{
+				width: 600px;
+				height: 600px;
+				border: 1px solid #ccc;
+				margin: 0 auto;
+				position: relative;
+			}
+			img{
+				width: 80px;
+				height: 80px;
+				position: absolute;
+				left: 0px;
+				top: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<img src="./f1.jpg" alt="">
+		</div>
+		
+		<script>
+			var  div = document.getElementById("box");
+			var img = document.querySelector("img");
+			var x = img.offsetLeft
+			var y = img.offsetTop
+			console.log(x);
+			console.log(y)
+			var maxL = div.clientWidth- img.offsetWidth;
+			var maxT = div.clientHeight - img.offsetHeight;
+			
+			document.onkeydown = function(e){
+				var e = e || window.event ;
+				if(e.keyCode == 37){
+					if(x <= 0){
+						x = 0
+					}else{
+						x-=5						
+					}
+					img.style.left = x + "px";
+				}else if(e.keyCode == 38){
+					if(y <= 0){
+						y = 0 ;
+					}else{
+						y-=5;						
+					}
+					img.style.top = y + "px"
+				}else if(e.keyCode == 39){
+					if(x >= maxL){
+						x = maxL
+					}else{
+						x+=5
+					}
+					img.style.left = x + "px";
+				}else if(e.keyCode == 40){
+					if(y >= maxT){
+						y = maxT
+					}else{
+						y+=5
+					}
+					img.style.top = y + "px"
+				}
+			}
+			
+		
+		</script>
+	</body>
+</html>

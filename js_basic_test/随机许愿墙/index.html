@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>11</title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#wishing-wall{
+				width: 1000px;
+				height: 600px;
+				border: 1px solid #ccc;
+				margin: 0 auto;
+				position: relative;
+			}
+			#wishing-menu{
+				
+				width: 1000px;
+				margin: 10px auto;
+			}
+			textarea{
+				width: 1000px;
+			}
+			#btn{
+				width: 80px;
+			}
+			.wishing-item{
+				width: 200px;
+				height: 100px;
+				/* background: #f00; */
+				color: white;
+				text-align: center;
+				position: absolute;
+				/* left: 100px; */
+				/* top: 100px; */
+				/* transform: rotate(30deg); */
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wishing-wall">
+<!-- 			<div class="wishing-item">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem praesentium.
+			</div> -->
+		</div>
+		<div id="wishing-menu">
+			<textarea rows="4" cols="100" placeholder="请输入许愿内容"></textarea>
+			<button id="btn">许愿</button>
+		</div>
+		
+		<script>
+			// 获取DOM元素
+			var wishingWall = document.getElementById("wishing-wall");
+			var txt = document.querySelector("textarea");
+			var btn = document.getElementById("btn");
+			var wishingArr = []; //用于保存愿望的数组
+			
+			// 读取本地存储
+			if(localStorage.wishingInfo){
+				wishingArr = JSON.parse(localStorage.wishingInfo)
+			}
+			// 展示愿望
+			showWishing()
+			
+			// 许愿按钮的点击事件
+			btn.onclick = function(){
+				var msg = txt.value ;
+				var randomLeft = Math.floor(Math.random() * 801);  //随机left位置
+				var randomTop = Math.floor(Math.random() * 501); //随机top位置
+				var randomDeg = Math.floor(Math.random() * 91) - 45 ;  //随机角度
+				// 创建一个保存当前愿望的对象，包含该愿望的内容，位置，角度以及背景色
+				var obj = {
+					msg : msg,
+					bgColor : randomBg(),
+					left : randomLeft ,
+					top : randomTop ,
+					deg : randomDeg
+				}
+				txt.value = ""; //清空文本域
+				wishingArr.push(obj); //将愿望对象添加到数组中
+				localStorage.setItem("wishingInfo",JSON.stringify(wishingArr)); //在本地存储数据
+				showWishing() //在许愿墙中展示愿望
+				
+			}		
+			
+			// 随机背景色函数
+			function randomBg(){
+				var r = Math.floor(Math.random() * 256);
+				var g = Math.floor(Math.random() * 256);
+				var b = Math.floor(Math.random() * 256);
+				var bgc = `rgb(${r},${g},${b})`;
+				return bgc;
+			}
+			
+			// 在许愿墙展示愿望函数
+			function showWishing(){
+				// 遍历所有的愿望数组项
+				for(var i = 0 ; i < wishingArr.length ; i++){
+					var div = document.createElement("div");  //创建一个div盒子
+					div.innerText = wishingArr[i].msg ;  //设置盒子内容
+					div.className = "wishing-item " ;  //添加默认的类名
+					// div.classList = ["wishing-item"]
+					div.style.left = wishingArr[i].left + "px";  //设置定位 left值
+					div.style.top = wishingArr[i].top + "px"; //设置定位 top值
+					div.style.background = wishingArr[i].bgColor;  //设置背景颜色
+					div.style.transform = `rotate(${wishingArr[i].deg}deg)`;  //设置旋转角度
+					wishingWall.appendChild(div) //添加到许愿墙中
+				}
+			}
+			
+		</script>
+		
+	</body>
+</html>
+
+
+<!-- {
+	message:"",
+	left:100,
+	top:100,
+	background:"#f00",
+	arg:30
+} -->
