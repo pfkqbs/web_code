@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 清除默认样式 */
+    * { padding: 0; margin: 0; }
+
+    /* 令html和body全屏显示, 并有一个灰色背景 */
+    html, body { height: 100%; background: gray; }
+
+    /* 找到中央盒子的直接父元素 */
+    body {
+      /* 令其变成弹性布局 */
+      display: flex;
+    }
+
+    .center {
+      /* 自动外边距 */
+      margin: auto;
+
+      /* 白色背景 */
+      background: white;
+
+      /* 不用给宽高，但是可以给个内边距防止内容与盒子过于贴合 */
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="center">用内容撑开盒子:
+    如果对弹性盒子不太了解的直接记住这俩要点即可：<br>
+
+    父元素：display: flex;<br>
+    子元素：margin: auto;
+  </div>
+</body>
+</html>

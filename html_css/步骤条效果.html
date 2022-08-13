@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>步骤条</title>
+    <style>
+ 
+     .eis-horizontal-steps .eis-form-steps {
+         overflow: hidden;
+         padding: 0;
+         font-size: 0;
+         position: relative
+     }
+ 
+     .eis-horizontal-steps .eis-form-steps .eis-form-step {
+         display: inline-block;
+         vertical-align: middle;
+         width: 33.33333%;
+         text-align: center
+     }
+ 
+     .eis-horizontal-steps .eis-form-steps .eis-step-progress {
+         height: 2px;
+         background: #4995fa;
+         width: 44%; /* 1是22%，2是44% */
+         margin-left: 4%;
+         position: absolute;
+         top: 15px;
+         left: 15px;
+     }
+ 
+     .eis-horizontal-steps .eis-form-steps .eis-step-head {
+         width: 100%;
+         position: relative
+     }
+ 
+     .eis-step-head .eis-step-icon {
+         width: 30px;
+         height: 30px;
+         font-size: 16px;
+         border-radius: 50%;
+         position: relative;
+         z-index: 1;
+     }
+ 
+     .is-finish .eis-step-icon {
+         border: 1px solid #4995fa
+     }
+ 
+     .eis-step-head .eis-step-icon .step-icon-txt {
+         width: 26px;
+         height: 26px;
+         background: #ddd;
+         border: 1px solid #ddd;
+         -webkit-border-radius: 50%;
+         -moz-border-radius: 50%;
+         border-radius: 50%;
+         text-align: center;
+         line-height: 26px;
+         color: #fff;
+         position: absolute;
+         top: 0;
+         left: 0;
+         right: 0;
+         bottom: 0;
+         margin: auto
+     }
+ 
+     .is-finish .eis-step-icon .step-icon-txt {
+         background: #4995fa;
+         border: 1px solid #4995fa
+     }
+ 
+     .eis-horizontal-steps .eis-step-head .eis-step-line {
+         position: absolute;
+         background-color: #f1f1f1;
+         height: 2px;
+         top: 15px;
+         left: 28px;
+         right: -4px
+     }
+ 
+     .eis-horizontal-steps .eis-form-step .eis-step-main {
+         font-size: 14px;
+         padding: 6px 0 0;
+         color: #666;
+         text-align: left
+     }
+ 
+     .is-finish .eis-step-main {
+         color: #3197fd
+     }
+ 
+ </style>
+
+</head>
+<body>
+    <!-- 重点就是，
+        进度条与步骤div的宽保持一致，比如完成了第一步，
+        就是进度条的width就是22%，
+        完成了第二步，就是44%，当然这个是可以自由调整的 -->
+ <div class="step-div">
+     <div class="eis-horizontal-steps">
+         <div class="eis-form-steps">
+             <div class="eis-form-step is-finish" style="width:22%;margin-left: 4%">
+                 <div class="eis-step-head">
+                     <div class="eis-step-icon">
+                         <div class="step-icon-txt">1</div>
+                     </div>
+                     <div class="eis-step-line">
+                         </div>
+                     </div>
+                     <div class="eis-step-main">填写基本信息</div>
+                 </div>
+                 <div class="eis-form-step is-finish" style="width:22%">
+                     <div class="eis-step-head">
+                         <div class="eis-step-icon">
+                             <div class="step-icon-txt">2</div>
+                         </div>
+                         <div class="eis-step-line">
+                         </div>
+                     </div>
+                     <div class="eis-step-main">获取报价信息</div>
+                 </div>
+                 <div class="eis-form-step" style="width:22%">
+                     <div class="eis-step-head">
+                         <div class="eis-step-icon">
+                             <div class="step-icon-txt">3</div>
+                         </div>
+                         <div class="eis-step-line">
+                         </div>
+                     </div>
+                     <div class="eis-step-main">确认投保</div>
+                 </div>
+                 <div class="eis-form-step" style="width:22%">
+                     <div class="eis-step-head">
+                         <div class="eis-step-icon">
+                             <div class="step-icon-txt">4</div>
+                         </div>
+                         <div class="eis-step-line">
+                         </div>
+                     </div>
+                     <div class="eis-step-main">支付订单</div>
+                 </div>
+                 <div class="eis-form-step" style="width:8%">
+                     <div class="eis-step-head">
+                         <div class="eis-step-icon">
+                             <div class="step-icon-txt">5</div>
+                         </div>
+                     </div>
+                     <div class="eis-step-main">生成保单</div>
+                 </div>
+                 <div class="eis-step-progress"></div>
+             </div>
+         </div>
+     </div>
+       
+    
+</body>
+</html>

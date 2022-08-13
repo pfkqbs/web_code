@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 清除默认样式 */
+    * { padding: 0; margin: 0; }
+
+    body {
+      /* 令body全屏显示 */
+      width: 100vw;
+      height: 100vh;
+
+      /* 显示为表格的格子 */
+      display: table-cell;
+
+      /* 水平居中 */
+      text-align: center;
+
+      /* 垂直居中 */
+      vertical-align: middle;
+
+      /* 灰色背景 */
+      background: gray;
+    }
+
+    .center {
+      /* 显示为行内块元素 */
+      display: inline-block;
+
+      /* 不用给宽高，但是可以给个内边距防止内容与盒子过于贴合 */
+      padding: 10px;
+
+      /* 白色背景 */
+      background: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="center">用内容撑开盒子:
+    此布局的关键点在于：<br>
+
+    父元素上 3 个样式设置：display: table-cell; text-align: center; vertical-align: center;；<br>
+    子元素上设置display: inline-block;。
+  </div>
+</body>
+</html>

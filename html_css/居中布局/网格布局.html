@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 清除默认样式 */
+    * { padding: 0; margin: 0; }
+
+    /* 令html和body全屏显示, 并有一个灰色背景 */
+    html, body { height: 100%; background: gray; }
+
+    /* 中央盒子的直接父元素 */
+    body {
+      /* 令其变成网格布局 */
+      display: grid;
+
+      /* 令子元素居中 */
+      place-items: center;
+    }
+
+    .center {
+	  /* 不用给宽高，但是可以给个内边距防止内容与盒子过于贴合 */
+      padding: 10px;
+      
+      /* 白色背景 */
+      background: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="center">
+    用内容撑开盒子:<br/>
+    其实可以看到绝大部分浏览器都已经支持了，<br/>
+    即使是最被吐槽的 IE 浏览器，也可以通过增加 -ms-前缀来进行支持。<br/>
+    例如：display: -ms-grid;
+    Grid 布局是近些年来逐渐兴起的一种布局方式，它的功能十分强大。<br/>
+    用它可以轻松的实现响应式布局，以前要很多行代码很多行判断的复杂布局，在掌握了 Grid 之后也都不在话下。<br/>
+  </div>
+</body>
+</html>

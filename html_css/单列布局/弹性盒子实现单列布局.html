@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 清除默认样式 */
+    * { padding: 0; margin: 0; }
+
+    /* 令html和body全屏显示, 并有一个灰色背景 */
+    html, body { height: 100%; background: gray; }
+
+    /* 找到单列盒子的直接父元素 */
+    body {
+      /* 令其变成弹性布局 */
+      display: flex;
+
+      /* 水平方向居中 */
+      justify-content: center;
+    }
+
+    .center {
+      /* 相当于flex版的width: 90% */
+      flex-basis: 90%;
+
+      /* 白色背景 */
+      background: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="center">
+    如果对弹性盒子不太了解的直接记住这几个要点即可：<br>
+
+父元素设置 display: flex；<br>
+水平方向属性为 justify-content；<br>
+垂直方向属性为 align-items；<br>
+  </div>
+</body>
+</html>

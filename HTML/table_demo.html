@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>table标签</title>
+</head>
+<body>
+    <div style="color:green">
+        表格由 table 标签来定义。<br>
+        每个表格均有若干行（由 tr 标签定义），<br>
+        每行被分割为若干单元格（由 td 标签定义）。<br>
+        字母 td 指表格数据（table data），即数据单元格的内容。<br>
+        数据单元格可以包含文本、图片、列表、段落、表单、水平线、表格等等。<br>
+    </div>
+    <br>
+    <br>
+    <br>
+ 
+    <div>
+        <table border="1" style="border-collapse: collapse;">
+            <!-- 表格标题 -->
+            <caption>学生信息</caption>
+            <!-- 表格头部 -->
+            <thead>
+                <tr>
+                   <th  width="120px" text-align="left" >序号</th>
+                   <th width="120px">学号</th>
+                   <th width="120px">姓名</th>
+                   <th width="120px">年龄</th>
+                   <th width="120px">手机号</th>
+                   <th width="120px">科目</th>
+                   <th width="120px">成绩</th>
+                </tr>
+            </thead>
+            <!-- 表格主题 -->
+            <tbody>
+                <tr>
+                   <td>01</td>
+                   <td>05180001</td>
+                   <td>张三</td>
+                   <td>18</td>
+                   <td>13888888888</td>
+                   <td>语文</td>
+                   <td>90</td>
+                </tr>
+                <tr>
+                    <td>01</td>
+                    <td>05180002</td>
+                    <td>李四</td>
+                    <td>18</td>
+                    <td>13888888888</td>
+                    <td>语文</td>
+                    <td>88</td>
+                 </tr>
+            </tbody>
+            <!-- 表格底部 -->
+             <tfoot>
+                <td colspan="6">合计</td>
+                <td>178</td>
+             </tfoot>
+         </table>
+    </div>
+
+    
+</body>
+</html>
