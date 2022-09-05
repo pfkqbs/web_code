@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div id="app">
+ 
+    </div>
+
+    <script src="./vue-3.2.31.js"></script>
+    <script>
+        console.log(Vue)
+
+        // 创建局部组件
+        const MInput ={
+            data(){
+                return {
+                    msg:'哈哈'
+                }
+            },
+            props:["myTitle"],
+            template:`
+            <div >
+                这是子组件<br/>
+                <input v-model="msg" />
+                <h3>{{ msg }}-- {{ myTitle }}</h3>
+            </div>`
+        }
+
+        const App = {
+            template:` 
+            <MChild/>
+            <m-input :myTitle="myTitle"/>
+            `, 
+            components:{ MInput }, /* 注册局部组件 */
+            data() {
+                return {
+                    answer: "",
+                    myTitle: "我是父组件的值，要给子组件",
+                }
+            },
+            methods: {},
+            computed: {},
+            watch: {},
+        }
+        const app = Vue.createApp(App)
+        app.component('MChild',{
+            data(){
+                return {
+                    title:"我是全局组件！"
+
+                }
+            },
+            template:`
+            <div>
+                {{ title }}
+            </div>
+            <h3>这是父组件的数据{{ myTitle }}</h3>
+            `
+
+        })
+        console.log(app)
+
+        app.mount('#app')
+    </script>
+</body>
+
+</html>

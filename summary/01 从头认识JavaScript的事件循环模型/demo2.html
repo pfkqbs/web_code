@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 严格按照顺序执行 */
+        var a = 1
+        var b = 2
+        var d1 = new Date().getTime()
+        var d2 = new Date().getTime()
+        while(d2-d1<2000){
+        d2 = new Date().getTime()
+        }
+        //这段代码在输出结果之前网页会进入一个类似假死的状态
+        console.log(a+b)
+    </script>
+</body>
+</html>

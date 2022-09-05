@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function updateName() {
+			    var name = 'TT';
+			    function getName(value) {
+			        name = value;
+			        console.log(name);
+			    }
+			    return getName; //外部函数返回
+			}
+			var sayName = updateName();
+			sayName('Thomas'); //Thomas
+			sayName('Jack'); //Jack
+		
+			
+		</script>
+	</body>
+</html>

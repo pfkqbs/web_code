@@ -96,15 +96,15 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/guide',
+    path: '/guide',//演示组件的名称功能
     component: Layout,
     redirect: '/guide/index',
     children: [
       {
         path: 'index',
         component: () => import('@/views/guide/index'),
-        name: 'Guide',
-        meta: { title: 'Guide', icon: 'guide', noCache: true }
+        name: 'guide',
+        meta: { title: '指引', icon: 'guide', noCache: true }
       }
     ]
   },
@@ -146,7 +146,7 @@ export const asyncRoutes = [
         component: () => import('@/views/permission/page'),
         name: 'PagePermission',
         meta: {
-          title: 'Page Permission',
+          title: '页面权限',
           roles: ['admin'] // or you can only set roles in sub nav
         }
       },

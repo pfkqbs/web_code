@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>双飞翼布局</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      #parent {
+        height: 500px;
+      }
+
+      #left,
+      #center,
+      #right {
+        float: left;
+      }
+
+      #left,
+      #right {
+        width: 300px;
+      }
+      #left {
+        background-color: #c9394a;
+        margin-left: -100%;
+      }
+
+      #center {
+        width: 100%;
+        background-color: green;
+      }
+
+      #right {
+        background-color: #cccccc;
+        margin-left: -300px;
+      }
+      #inner {
+        height: 300px;
+        background-color: hotpink;
+        margin-left: 300px;
+        margin-right: 300px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 在圣杯基础的结构的基础上,中间容器里面嵌套了一个子容器,解决了圣杯用定位进行再次移动的问题
+  双飞翼布局,没有定位进行位置的移动,简化了圣杯的代码(定位)
+  -->
+    <div id="parent">
+      <div id="center">
+        <div id="inner">inner</div>
+      </div>
+      <div id="left">left</div>
+      <div id="right">right</div>
+    </div>
+  </body>
+</html>
+

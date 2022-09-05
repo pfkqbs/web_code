@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <!-- 渲染区域 -->
+    <div id="app">
+
+        <!--    {{  }}  插值语法 -->
+        <h3>{{ title }}</h3>
+
+    </div>
+
+    <!-- 1--导入vue -->
+    <script src="./vue-3.2.31.js"></script>
+
+    <script>
+        console.log(Vue)//2--引入vue后  暴露vue，打印看一下
+
+        // 组件 bootstrap组件
+        // 创建根app组件实例
+
+        // 组件命名1.首字母大写  比如App
+
+        // 数据驱动视图  MVVM
+
+        // M: model (模型，响应式数据)
+        // V: View （视图，模板标签或者组件）
+        // VM:ViewModel (Vue提供的方式 修改响应式数据同时更新视图))
+        const App = {
+            // 响应式数据 数据属性
+            data() {
+                return {
+                    title: '黄瓜',
+                }
+            },
+
+        }
+
+        //3-- 创建vue实例createApp(App)  App是一个组件，对象属性有mount,data,methods,...
+        const app = Vue.createApp(App)
+        console.log(app)
+
+        /* app挂载 */
+        app.mount('#app')
+
+    </script>
+</body>
+
+</html>

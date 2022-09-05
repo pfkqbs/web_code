@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="lickdog-out_wrap"><div>
+    <script>
+        (async function() {
+            const lickdog = await import('./1.js')
+            lickdog.lick(
+                // 重点！
+                [
+                    "问题到我为止，改变从我开始",
+                    "人在一起叫聚会，心在一起叫团队",
+                    "工作创造价值，奉献带来快乐，态度决定一切",
+                    "怠惰是贫穷的制造厂", 
+                    "一个优秀的员工必须培养自己对工作的兴趣，使工作成为愉快的旅程", 
+                    "一朵鲜花打扮不出美丽的春天，一个人先进总是单枪匹马，众人先进才能移山填海",
+                    "抓住今日，尽可能少的依赖明天",
+                    "行动是成功的开始，等待是失败的源头",
+                    "强化竞争意识，营造团队精神",
+                    "迅速响应，马上行动",
+                    "去超越那个比你牛逼，更比你努力的人",
+                    "不为失败找理由，只为成功找方法",
+                    "含泪播种的人一定能含笑收获",
+                    "不经历风雨，怎么见彩虹",
+                    "路，要一步一步足踏实地地往前走，才能获得成功",
+                ]
+            )
+        })()
+    </script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+
+        span.active {
+            color: blueviolet;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- vue中提供的指令 -->
+        <!-- 1.v-html和v-text -->
+        <div v-html="htmlStr"></div>
+        <div v-text="htmlStr"></div>
+ 
+    </div>
+    <script src="./vue-3.2.31.js"></script>
+    <script>
+        console.log(Vue)
+
+        const App = {
+            // 响应式数据 数据属性
+            data() {
+                return {
+                    htmlStr: '<h3>我是模板字符串</h3>',
+                }
+            },
+            methods: {
+
+            },
+            computed: {
+
+
+            },
+            watch: {
+
+            },
+        }
+        const app = Vue.createApp(App)
+        console.log(app)
+
+        app.mount('#app')
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 箭头函数的this对象
+			// var fn = () => {
+			// 	console.log(this)
+			// }
+			// fn()
+			// 箭头函数与function函数的this有很大的指向区别
+			// function函数只看谁调用的，而箭头函数只看写在哪
+			// 箭头函数本身没有this对象，他内部的this会自动获取
+			// 该函数所在作用域的this对象的值作为自己的this
+			
+			var obj = {
+				fn:() => {
+					console.log(this)
+				},
+				fn1:function(){
+					console.log(this)
+					var test = () => {
+						console.log(this)
+					}
+					test()
+				}
+			}
+			// obj.fn()
+			// var fn = obj.fn
+			// fn()
+			obj.fn1()
+			var fn1 = obj.fn1
+			fn1()
+			
+			var o = {
+			  prop: 37,
+			  f: function() {
+			    return this.prop;
+			  }
+			};
+			
+			console.log(o.f()); // 37
+			var f = o.f
+			console.log(f())
+		</script>
+	</body>
+</html>

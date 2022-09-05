@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			class Example {
+			  constructor() {
+					console.log(this)
+			    const proto = Object.getPrototypeOf(this);
+			    console.log(Object.getOwnPropertyNames(proto));
+			  }
+			  first(){}
+			  second(){}
+			  static third(){}
+			}
+			console.log(Example.third)
+			var e = new Example();
+			console.log(e)
+		</script>
+	</body>
+</html>

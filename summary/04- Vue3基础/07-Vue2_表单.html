@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+ 
+        <!-- 5.表单  input select radio textarea 等   v-model 双向数据绑定体现       
+        -->
+
+        <!--1 v-model其实是：v-bind:value 和v-on:input的语法糖  -->
+        <input type="text" :value="msg" @input="handleInput"> 
+        <br>
+        <!-- 简写为 -->
+        <input type="text" v-model="msg"> 
+        <br>
+        <!-- 修饰符 lazy 懒  失焦之后再同步 -->
+        lazy:<input type="text" v-model.lazy="msg">
+        <br>
+        <!-- 修饰符 number 有bug  只能先输入数字 -->
+        number:<input type="text" v-model.number="msg">
+
+        <!-- 表单的值， -->
+        <h3> {{ msg }} </h3>
+
+ 
+    </div>
+    <script src="./vue-3.2.31.js"></script>
+    <script>
+        console.log(Vue)
+
+        const App = {
+            // 响应式数据 数据属性
+            data() {
+                return {    
+                    msg: "",
+                }
+            },
+            methods: {
+
+                handleInput(e) {
+                    this.msg = e.target.value
+                },
+
+            },
+            computed: {
+
+
+            },
+            watch: {
+
+            },
+        }
+        const app = Vue.createApp(App)
+        console.log(app)
+
+        app.mount('#app')
+    </script>
+</body>
+
+</html>

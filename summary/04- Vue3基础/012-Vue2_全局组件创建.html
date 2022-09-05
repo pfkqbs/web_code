@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div id="app">
+ 
+    </div>
+    <script type="text/x-template" id="m-child">
+        <div>
+            {{ title }}
+        </div>
+        <h3>{{ title }}</h3>
+    </script>
+    <script src="./vue-3.2.31.js"></script>
+    <script>
+        console.log(Vue)
+
+        const App = {
+            template:` <MChild/>`,  
+            data() {
+                return {
+                    answer: "",
+                }
+            },
+            methods: {},
+            computed: {},
+            watch: {},
+        }
+        const app = Vue.createApp(App)
+        app.component('MChild',{
+            data(){
+                return {
+                    title:"我是全局组件！"
+
+                }
+            },
+            /* 第一种方式： 标签放在template中  */
+            // template:`
+            // <div>
+            //     {{ title }}
+            // </div>
+            // <h3>{{ title }}</h3>
+            // `
+
+            /* 第二种方式：<script type="text/x-template" id="m-child">  template:`#m-child` */
+            template:`#m-child`
+        })
+        console.log(app)
+
+        app.mount('#app')
+    </script>
+</body>
+
+</html>

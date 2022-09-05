@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function test(){
+				console.log(arguments)
+			}
+			test(1,2,3)
+			// ES6标准提出之后，为了更好的提升JS的开发体验和编程规范
+			// 推出了箭头函数和 class对象
+			// 这样就把function自带的两种特性完全分离了
+			// 所以ES6的箭头函数只作为函数使用
+			// class 只作为对象使用
+			var test1 = (...args) => {
+				console.log(args)
+			}
+			test1(4,5,6)
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+
+        span.active {
+            color: blueviolet;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+<!-- 自定义指令 -->
+<input type="text" v-focus v-model="myMsg">
+
+
+    </div>
+    <script src="./vue-3.2.31.js"></script>
+    <script>
+        console.log(Vue)
+
+        const App = {
+            // 响应式数据 数据属性
+            data() {
+                return {
+                    myMsg: "",
+
+                }
+            },
+            methods: {
+
+            },
+            computed: {
+
+
+            },
+            watch: {
+ 
+            },
+        }
+        const app = Vue.createApp(App)
+        console.log(app)
+        /* 自定义指令 */
+        app.directive('focus', {
+            // 当被绑定的元素挂载到 DOM 中时……
+            mounted(el) {
+                // 聚焦元素
+                console.log(el)
+                el.focus()
+            }
+        })
+        // 自定义指令  防抖
+        app.direction('debounce',{
+
+            // mounted  自定义指令钩子函数
+            mounted: function (el, binding) {
+                let timer
+                el.addEventListener('click', () => {
+                    if (timer) {
+                        clearTimeout(timer)
+                    }
+                    timer = setTimeout(() => {
+                        binding.value()
+                    }, 1000)
+                })
+            },
+        })
+        app.mount('#app')
+    </script>
+</body>
+
+</html>

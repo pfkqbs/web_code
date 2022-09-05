@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function createPerson(name, age) {
+			    return {
+			        name: name,
+			        age: age,
+			        sayHello: function () {
+			            console.log('hello');
+			        },
+			    };
+			}
+			let person = createPerson('Thomas', 18);
+			let person1 = createPerson('张三', 19);
+			console.log(person);
+			console.log(person1);
+		</script>
+	</body>
+</html>

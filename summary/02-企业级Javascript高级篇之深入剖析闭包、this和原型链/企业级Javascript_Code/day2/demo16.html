@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function Person(name, age) {
+			    this.name = name;
+			    this.age = age;
+			    this.sayHello = function () {
+			        console.log('hello');
+			    };
+			}
+			console.dir(Person)
+			var p1 = new Person('Thomas', 18); // 返回了一个新的对象
+			p1.sayHello(); // => Thomas
+			
+			var p2 = new Person('Jack', 23);
+			p2.sayHello(); // => Jack
+			console.log(p1);
+			console.log(p2)
+		</script>
+	</body>
+</html>

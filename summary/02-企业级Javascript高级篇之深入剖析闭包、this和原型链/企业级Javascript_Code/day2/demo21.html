@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function Father(){
+				this.name = '爸爸'
+				this.age = 35
+				this.money = 10000
+			}
+			Father.prototype.getMoney = function(){
+				return this.money
+			}
+			Father.prototype.coding = function(){
+				console.log('编程')
+			}
+			var f = new Father()
+			console.log(f)
+			
+			function Son(){
+				
+				this.name = '儿子'
+				this.age = 18
+				this.money = 100
+				Father.call(this)
+			}
+			Son.prototype.music = function(){
+				console.log('音乐天赋')
+			}
+			Son.prototype.__proto__ = Father.prototype
+			var s = new Son()
+			console.log(s)
+			
+			
+		</script>
+	</body>
+</html>

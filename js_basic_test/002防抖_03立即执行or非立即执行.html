@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖和截流</title>
+</head>
+<body>
+    <p>函数防抖原理：通过维护一个定时器，其延迟计时以最后一次触发为计时起点，到达延迟时间后才会触发函数执行。<br>
+
+        防抖的实现方式分两种 “立即执行” 和 “非立即执行” ，区别在于第一次触发时，是否立即执行回调函数。</p>
+    <button id="debounce"> 点击 </button>
+    <script>
+        /* 3 这个按钮需要立即执行，那个按钮不需要立即执行！ */
+        window.onload = function(){
+            var mydebounce = document.getElementById("debounce")
+            mydebounce.addEventListener('click',debounce(sayDebounce,1000,true))
+        }
+
+        function debounce(fn,time,immediate){
+            let timer = null;
+            return function(){
+                let context = this;
+                let args = arguments;
+
+                if(timer) clearTimeout(timer)  //清除前一个定时器
+
+                if(immediate){//立即执行
+
+                    let callNow = !timer
+                    timer = setTimeout( ()=>{
+                        timer = null
+                    },time || 500)
+
+                    if(callNow) fn.apply(context,args)
+
+                }else{//非立即执行
+                    timer = setTimeout( function(){
+                        fn.apply(context,args)
+                    },time || 500)
+                }
+                
+            }
+        }
+
+        function sayDebounce(){
+            console.log("处理防抖的事件写在这个方法里");
+        }
+    </script>
+</body>
+</html>

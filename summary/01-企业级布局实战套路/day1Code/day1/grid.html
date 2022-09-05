@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .wrapper {
+        display: grid;
+				/* repeat第一个参数不是分几列，而是代表右侧的结构重复一次 */
+        grid-template-columns: repeat(3,[c] 100px) ;
+				grid-template-rows: repeat(3,[r] 100px);
+				/*  */
+        grid-gap: 10px;
+				/* justify-content: center; */
+				/* justify-items: center; */
+				/* align-items: center; */
+      }
+			.wrapper div{
+				background-color: #5F9EA0;
+			}
+			.wrapper div:first-child{
+				background-color: #FF0000;
+				grid-area: r 1/c 2/r 4/ c 3;
+			}
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div>One</div>
+      <div>Two</div>
+      <div>Three</div>
+      <div>Four</div>
+      <div>Five</div>
+    </div>
+  </body>
+</html>
+

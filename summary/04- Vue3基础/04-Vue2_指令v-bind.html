@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+            <!-- v-bind 动态绑定属性 -->
+        <img v-bind:src="imgSrc">
+
+        <img :src="imgSrc"><!-- 简写形式 -->
+ 
+    </div>
+    <script src="./vue-3.2.31.js"></script>
+    <script>
+        console.log(Vue)
+
+        const App = {
+            // 响应式数据 数据属性
+            data() {
+                return {
+  
+                    imgSrc: 'https://img1.baidu.com/it/u=2927774830,1002917207&fm=253&fmt=auto&app=138&f=JPEG?w=290&h=290',
+
+                }
+            },
+            methods: {
+
+            },
+            computed: {
+
+
+            },
+            watch: {
+
+            },
+        }
+        const app = Vue.createApp(App)
+        console.log(app)
+
+        app.mount('#app')
+    </script>
+</body>
+
+</html>

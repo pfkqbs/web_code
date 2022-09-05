@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function Person(name, age) {
+			    this.name = name;
+			    this.age = age;
+			}
+			Person.prototype.sayHello = function () {
+			    console.log('hello');
+			};
+			
+			var p1 = new Person('Thomas', 18);
+			p1.sayHello(); // => Thomas
+			console.log(Object.getPrototypeOf(p1) === Person.prototype); // true
+			console.log(Person.prototype.constructor === Person); // true
+			console.log(Object.getPrototypeOf(p1));
+		</script>
+	</body>
+</html>

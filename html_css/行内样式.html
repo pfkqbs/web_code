@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .divDemo{
+            color: blueviolet;
+            width: 400px;
+            height: 300px;
+            background:#eee;
+        }
+    </style>
+    <!-- 第三种： -->
+    <link rel="stylesheet" href="demo1.css">
+    <!-- 第四种  -->
+    <style>
+        @import url('demo1.css');
+    </style>
+</head>
+<body>
+    <!-- 1行内样式 --内联方式-：只对当前元素有效，重用性低-->
+    <div style="width: 300px; height:300px;background-color:greenyellow">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum cumque id amet, voluptatibus iure repellat, laudantium est rem voluptate aspernatur quis iusto. Ex ut et saepe, ea reprehenderit nesciunt hic?</div>
+    
+    <!-- 2内部方式：style标签 语法：选择器：{属性：属性值；}-->
+    <div class="divDemo">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolores dolorem est aliquam, adipisci ipsam ratione sequi dolorum facilis pariatur odio, magnam, iure dolor doloremque obcaecati fuga dicta recusandae a fugiat.
+    </div>
+
+    <!-- 3 link导入 -->
+    <div class="demo">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, laudantium dolorem aperiam reiciendis autem iste corrupti eveniet dicta sequi voluptates inventore! Vero error explicabo nulla ducimus ipsa optio quas enim.
+    </div>
+
+    <!-- 第4种   -->
+    <div class="demo">
+        第四种
+    </div>
+
+    <!-- linkhe @import 的区别：
+    1--加载顺序不同，@import先加载HTML文件，再加载css文件；Link是同时加载HTML和css文件
+    2--引入内容不同：@import只能引入css文件，link还可以引入其他内容
+    3--兼容性问题：@import有兼容性问题（IE5以上支持），link没有兼容性
+    4--@import增加页面的http请求
+    5--JavaScript操作DOM时，只能操作link引入的css文件 -->
+
+</body>
+</html>

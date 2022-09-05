@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			class Car {
+			  constructor() {
+			    // Bind sayBye but not sayHi to show the difference
+					// bind是用来动态改变函数的this指向的一个api
+					// 设置了之后他会返回锁定了this对象之后的函数预设对象
+					var obj = {name:'我是新的结果'}
+			    this.sayBye = this.sayBye.bind(obj);
+			  }
+			  sayHi() {
+			    console.log(`Hello from ${this.name}`);
+			  }
+			  sayBye() {
+			    console.log(`Bye from ${this.name}`);
+			  }
+			  get name() {
+			    return 'car';
+			  }
+			}
+			
+			class Bird {
+			  get name() {
+			    return 'bird';
+			  }
+			}
+			
+			const car = new Car();
+			const bird = new Bird();
+			
+			// The value of 'this' in methods depends on their caller
+			car.sayHi(); // Hello from Ferrari
+			bird.sayHi = car.sayHi;
+			bird.sayHi(); // Hello from Tweety
+			
+			// For bound methods, 'this' doesn't depend on the caller
+			bird.sayBye = car.sayBye;
+			bird.sayBye();  // Bye from Ferrari
+		</script>
+	</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+		
+			// function test(){
+			// 	console.log(this)
+			// }
+			// test()
+			// function函数就看谁调他，如果没人，就是window
+			// 有人调用他 就是调用的那个人
+			'use strict'
+			var obj = {
+				fn:function(){
+					console.log(this)
+					function test(){
+						console.log(this)
+					}
+					test()
+				}
+			}
+			obj.fn()
+			var fn = obj.fn
+			window.fn()
+			
+			var _this = null
+			function Ren(){
+				
+				this.name = '小明'
+				this.age = 18
+				console.log(this)
+				_this = this
+			}
+			var r = new Ren()
+			console.log(r)
+			console.log(r === _this)
+		</script>
+	</body>
+</html>

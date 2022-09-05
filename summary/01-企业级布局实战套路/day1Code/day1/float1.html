@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>两列布局解决方案1 - float+margin</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      #left {
+        width: 400px; /* 定宽 */
+        height: 300px;
+        background-color: #c9394a;
+        float: left;
+				opacity: 0.4;
+      }
+
+      #right {
+        height: 300px;
+        background-color: cadetblue;
+				overflow: hidden;
+        /* margin-left: 400px; */
+				/* padding-left: 15px; */
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="left"></div>
+    <!-- 自适应容器 -->
+    <div id="right">
+			right
+		</div>
+  </body>
+</html>
+

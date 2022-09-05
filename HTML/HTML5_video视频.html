@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- IE*及IE8 以下不支持 -->
+
+    <!-- video标签属性：
+    src --视频路径
+    muted --静音
+    poster --视频播放前显示的图片 s使用这个需要关闭自动播放autoplay
+    width -- 视频的宽度
+    height -- 视频的高度
+    controls -- 显示控制面板
+    preload -- 预加载
+  -->
+    <video 
+    width="320" 
+    height="240" 
+    controls
+    autoplay="autoplay"
+    loop
+    muted
+    poster="img.img"
+    preload="preload"
+    >
+        <source src="mov.mp4" type="video/mp4">
+        <source src="movie.ogg" type="video/ogg">
+      您的浏览器不支持Video标签。
+      </video>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+
+        span.active {
+            color: blueviolet;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+ 
+        <!-- 4.v-for key一般都是唯一性的id， 绑定key diff算法 就地复用作用 
+        
+            v-for和v-if 
+            版本vue2,v-for的优先级大于v-if,建议不要v-for和v-if指令同时使用
+            版本vue3,v-if的优先级大于v-for,所以不能在同一个标签下使用v-for和v-if
+
+
+            v-for不仅可以处理数组，还可以处理对象
+        -->
+        <ul>
+            <li v-for="(item,i) in menus" :key="item.id" >
+                <span> {{ item.name }} </span>
+            </li>
+        </ul>
+        <hr>
+        <!-- 增加默认选中样式 -->
+        <ul>
+            <li v-for="(item,i) in menus" :key="item.id" @click="changeActive(i)">
+                <span :class="{active:i === currentIndex}"> {{ item.name }} </span>
+            </li>
+        </ul>
+
+        <hr>
+        <!-- 通过计算属性，提前过滤，实现v-for和v-if不同时使用的场景 -->
+        <ul>
+            <li v-for="(item,i) in filterMenus" :key="item.id" @click="changeActive(i)">
+                <span :class="{active:i === currentIndex}" > {{ item.name }} </span>
+            </li>
+        </ul>
+
+
+    </div>
+    <script src="./vue-3.2.31.js"></script>
+    <script>
+        console.log(Vue)
+
+        const App = {
+            // 响应式数据 数据属性
+            data() {
+                return {
+    
+                    menus: [
+                        { id: 1, name: "大腰子" },
+                        { id: 2, name: "烤韭菜" },
+                        { id: 3, name: "烤羊肉串" },
+                        { id: 4, name: "烤鱼豆腐" },
+                    ],
+                    currentIndex: 0,
+                }
+            },
+            methods: {
+   
+                changeActive(index) {
+                    this.currentIndex = index
+                },
+ 
+            },
+            computed: {
+                filterMenus() {
+                    return this.menus.filter(item => item.id !== 1)
+                },
+
+
+            },
+            watch: {
+
+            },
+        }
+        const app = Vue.createApp(App)
+        console.log(app)
+
+        app.mount('#app')
+    </script>
+</body>
+
+</html>

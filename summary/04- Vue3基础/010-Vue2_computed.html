@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+
+        span.active {
+            color: blueviolet;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 计算属性有缓存 -->
+        <!-- 计算属性 默认是只有getter方法，如果需要，则可以设置setter方法 -->
+        <p v-for="item in evenNumbers" :key="item">{{item}}</p>
+        <p>{{fullName}}</p>
+
+        <button @click="handleUpdateName">更改</button>
+
+        <!-- 反转字符串 -->
+        <h3>{{reverseHtmlStr}}</h3>
+
+    </div>
+    <script src="./vue-3.2.31.js"></script>
+    <script>
+        console.log(Vue)
+
+        const App = {
+            // 响应式数据 数据属性
+            data() {
+                return {
+
+                    firstName: "马",
+                    htmlStr: "ABCDEFGHIJKLMN",
+                    lastName: 'Mr'
+                }
+            },
+            methods: {
+                handleUpdateName() {
+                    this.firstName = '刘'
+                },
+
+            },
+            computed: {
+                // 姓名拼接
+                fullName() {
+                    return this.lastName + ' ' + this.firstName
+                },
+                // 反转字符串
+                reverseHtmlStr() {
+                    return this.htmlStr.split('').reverse().join('')
+                }
+
+            },
+            watch: {
+
+            },
+        }
+        const app = Vue.createApp(App)
+        console.log(app)
+
+        app.mount('#app')
+    </script>
+</body>
+
+</html>
