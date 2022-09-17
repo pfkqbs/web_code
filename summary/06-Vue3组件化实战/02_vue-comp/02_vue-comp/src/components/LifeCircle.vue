@@ -62,13 +62,17 @@ export default {
   //   vue3新的组合 option，以后所有的composition api 都会在setup中函数中
   setup() {
     //   调用时机：在beforeCreate之前调用， 没有所谓的this的概念，记住：一定不能用this
+
     // ref声明的是响应式数据
     let num = ref(0)
+
+    // 挂载方法
     const handleClick = () => {
       console.log(num)
       //   num += 1
       num.value += 1
     }
+    
     onBeforeMount(() => {
       console.log('---onBeforeMount')
     })

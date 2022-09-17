@@ -64,18 +64,25 @@
   <h3>生命周期</h3>
   <LifeCircle></LifeCircle> -->
   <hr />
-  <h3>Setup</h3>
-  <Setup
-    :title="setup"
-    name="张三"
-    @update="hanldeUpdate"
-    ref="setupRef"
-  ></Setup>
-  <WatchAndComputed></WatchAndComputed>
+  <div style="border:1px solid tomato">
+    <h3>Setup子组件：</h3>
+    <Setup
+      :title="setup"
+      name="张三"
+      @update="hanldeUpdate"
+      ref="setupRef"
+    ></Setup>
+  </div>
+  <div style="border:1px solid tomato">
+    计算属性和watch
+   <WatchAndComputed></WatchAndComputed>
+  </div>
 </template>
 
 <script>
+  // 获取当前实例
 import { getCurrentInstance } from 'vue'
+
 import MChild from './components/Child.vue'
 import TestNextTick from './components/TestNextTick.vue'
 import TestTeloport from './components/TestTeloport.vue'
@@ -131,7 +138,10 @@ export default {
   //   console.log('created')
   // },
   mounted() {
+    console.log('$t',$t);
+    // 调用expose暴露出子组件的方法
     this.$refs.setupRef.childMethod()
+
   },
   methods: {
     hanldeUpdate(n) {
@@ -158,9 +168,12 @@ export default {
     }
   },
 
-  // 新的组合option
+  // vue3 新的组合option 
   setup() {
     // console.log('setup')
+
+    // vue实例有个 getCurrentInstance 方法
+
     const $t = getCurrentInstance()?.appContext?.config?.globalProperties?.$t
     // console.log($t)
   },

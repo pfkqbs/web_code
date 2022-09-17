@@ -2,6 +2,7 @@
   <div>{{ count }}--{{ title }}</div>
   <button @click="update">修改</button>
   <button @click="updateName">更改name</button>
+
   <form action="javascript:;">
     <div>
       <label for="name">姓名：</label>
@@ -20,7 +21,7 @@
 
 <script>
 /**
- * reactive和ref
+ * reactive 和 ref
  * 是vue3中composition api中2个最重要的响应式API
  * ref是用来处理基本类型数据，reative用来处理对象（递归深度响应式 proxy）
  * 如果ref,对象或者数组，内部会自动将对象或者数组换换成reactive的代理对象
@@ -41,32 +42,52 @@ export default {
    */
   setup(props, { emit, attrs, slots, expose }) {
     console.log(props, attrs)
-    // 声明任意的数据类型，
+
+    // ref 声明任意的数据类型，
+
     // 1.使用ref声明的数据，如果在js操作此响应式数据，则通过xx.value
     const count = ref(0)
+
+    // reactive 声明一个响应式的数据对象
     let formState = reactive({
       name: '小马哥',
       pwd: '123',
     })
+
+    //
     const refFormState = toRefs(formState)
     console.log(refFormState)
+
+    // 表单提交的方法
     const handleSubmit = () => {
-      //   es6的解构
+
+      //   es6的解构  内部失去响应式
       //   formState = { ...formState, sex: 1 }
+      //   console.log(formState)
+
+        // 修改一个值，使用下面的可以实现
       //   formState.sex = 1
 
+      // 修改多个值，还不失去响应式，可使用下面的方法
       Object.assign(formState, { sex: 1, a: 2, c: 3 })
       console.log(formState)
     }
+
+    // 修改formState.name 的方法
     const updateName = () => {
       formState.name = '大马哥'
     }
+
     const update = () => {
       emit('update', '我是新修改的值')
     }
+
+    // 子组件的方法childMethod
     const childMethod = () => {
-      console.log('我是孩子组件的方法')
+      console.log('我是子组件setup的方法')
     }
+
+    // expose暴露出去子组件的方法
     expose({
       childMethod,
     })
